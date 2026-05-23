@@ -113,7 +113,7 @@ export function InterfacesForm() {
           <div key={vlan.id} className="flex flex-wrap items-end gap-6 p-4 rounded-lg border border-border bg-panel-bg">
             <Input label="VLAN Name" value={vlan.name} onChange={v => updateItem('vlans', vlan.id, { name: v })} placeholder="e.g. vlan10-mgmt" />
             <Input label="VLAN ID (1-4094)" value={vlan.vlanId} onChange={v => updateItem('vlans', vlan.id, { vlanId: v })} placeholder="e.g. 10" type="number" />
-            <Input label="Parent Interface" value={vlan.interface} onChange={v => updateItem('vlans', vlan.id, { interface: v })} placeholder="e.g. ether1 or bridge1" />
+            <Input label="Parent Interface" list="interface-list" value={vlan.interface} onChange={v => updateItem('vlans', vlan.id, { interface: v })} placeholder="e.g. ether1 or bridge1" />
             <RemoveBtn onClick={() => removeItem('vlans', vlan.id)} />
           </div>
         ))}
@@ -281,7 +281,7 @@ export function IPForm() {
         {state.ipAddresses.map(ip => (
           <div key={ip.id} className="flex flex-wrap items-end gap-6 p-4 rounded-lg border border-border bg-panel-bg">
             <Input label="IP Address (CIDR)" value={ip.address} onChange={v => updateItem('ipAddresses', ip.id, { address: v })} placeholder="e.g. 192.168.88.1/24" />
-            <Input label="Interface" value={ip.interface} onChange={v => updateItem('ipAddresses', ip.id, { interface: v })} placeholder="e.g. bridge1" />
+            <Input label="Interface" list="interface-list" value={ip.interface} onChange={v => updateItem('ipAddresses', ip.id, { interface: v })} placeholder="e.g. bridge1" />
             <RemoveBtn onClick={() => removeItem('ipAddresses', ip.id)} />
           </div>
         ))}
@@ -301,7 +301,7 @@ export function FirewallForm() {
           <div key={nat.id} className="flex flex-col gap-4 p-4 rounded-lg border border-border bg-panel-bg">
             <div className="flex flex-wrap items-end gap-6">
               <Select label="Action" value={nat.action} onChange={v => updateItem('srcNat', nat.id, { action: v })} options={[{label:'masquerade', value:'masquerade'}, {label:'src-nat', value:'src-nat'}, {label:'accept', value:'accept'}]} />
-              <Input label="Out Interface" value={nat.outInterface} onChange={v => updateItem('srcNat', nat.id, { outInterface: v })} placeholder="e.g. ether1" />
+              <Input label="Out Interface" list="interface-list" value={nat.outInterface} onChange={v => updateItem('srcNat', nat.id, { outInterface: v })} placeholder="e.g. ether1" />
               <Input label="Src. Address" value={nat.srcAddress || ''} onChange={v => updateItem('srcNat', nat.id, { srcAddress: v })} placeholder="e.g. 192.168.88.0/24 (Opt)" />
               <Input label="Src. Address List" value={nat.srcAddressList || ''} onChange={v => updateItem('srcNat', nat.id, { srcAddressList: v })} placeholder="e.g. !Public-IP" />
               <RemoveBtn onClick={() => removeItem('srcNat', nat.id)} />
@@ -326,7 +326,7 @@ export function FirewallForm() {
               <Select label="Action" value={nat.action} onChange={v => updateItem('dstNat', nat.id, { action: v })} options={[{label:'dst-nat', value:'dst-nat'}, {label:'accept', value:'accept'}]} />
               <Select label="Protocol" value={nat.protocol} onChange={v => updateItem('dstNat', nat.id, { protocol: v })} options={[{label:'tcp', value:'tcp'}, {label:'udp', value:'udp'}]} />
               <Input label="Dst. Port" value={nat.dstPort} onChange={v => updateItem('dstNat', nat.id, { dstPort: v })} placeholder="e.g. 80" />
-              <Input label="In Interface" value={nat.inInterface} onChange={v => updateItem('dstNat', nat.id, { inInterface: v })} placeholder="e.g. ether1" />
+              <Input label="In Interface" list="interface-list" value={nat.inInterface} onChange={v => updateItem('dstNat', nat.id, { inInterface: v })} placeholder="e.g. ether1" />
               <RemoveBtn onClick={() => removeItem('dstNat', nat.id)} />
             </div>
             {nat.action === 'dst-nat' && (
@@ -442,7 +442,7 @@ export function PPPoEForm() {
             <div key={srv.id} className="flex flex-col gap-4 p-4 rounded-lg border border-border bg-panel-bg">
                <div className="flex flex-wrap items-end gap-6">
                  <Input label="Service Name" value={srv.serviceName || ''} onChange={v => updateItem('pppoeServers', srv.id, { serviceName: v })} placeholder="e.g. service31" />
-                 <Input label="Interface" value={srv.interface || ''} onChange={v => updateItem('pppoeServers', srv.id, { interface: v })} placeholder="e.g. bridge1" />
+                 <Input label="Interface" list="interface-list" value={srv.interface || ''} onChange={v => updateItem('pppoeServers', srv.id, { interface: v })} placeholder="e.g. bridge1" />
                  <Input label="Keepalive Timeout" value={srv.keepalive || '10'} onChange={v => updateItem('pppoeServers', srv.id, { keepalive: v })} placeholder="10" />
                  <RemoveBtn onClick={() => removeItem('pppoeServers', srv.id)} />
                </div>
