@@ -1,0 +1,6 @@
+{
+  "name": "MikroTik CLI Generator",
+  "description": "Generate modern RouterOS CLI scripts from UI configurations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-app-bg: var(--app-bg);
+  --color-sidebar-bg: var(--sidebar-bg);
+  --color-panel-bg: var(--panel-bg);
+  --color-input-bg: var(--input-bg);
+  --color-border: var(--border-color);
+  --color-border-hover: var(--border-hover);
+  --color-text-main: var(--text-main);
+  --color-text-muted: var(--text-muted);
+  --color-brand: var(--brand-color);
+  --color-brand-hover: var(--brand-hover);
+}
+
+@layer base {
+  :root {
+    --app-bg: #EAECEF;
+    --sidebar-bg: #FFFFFF;
+    --panel-bg: #FFFFFF;
+    --input-bg: #F8FAFC;
+    --border-color: rgba(0,0,0,0.1);
+    --border-hover: rgba(0,0,0,0.2);
+    --text-main: #0F172A;
+    --text-muted: #64748B;
+    --brand-color: #00A8E6;
+    --brand-hover: #0096cc;
+  }
+
+  .dark {
+    --app-bg: #1E1E1E;
+    --sidebar-bg: #262626;
+    --panel-bg: #0C0C0E;
+    --input-bg: #121214;
+    --border-color: rgba(255,255,255,0.05);
+    --border-hover: rgba(255,255,255,0.2);
+    --text-main: #F8FAFC;
+    --text-muted: #94A3B8;
+    --brand-color: #00A8E6;
+    --brand-hover: #0096cc;
+  }
+
+  html, body {
+    @apply h-full antialiased bg-app-bg text-text-main font-sans overflow-hidden;
+  }
+}
