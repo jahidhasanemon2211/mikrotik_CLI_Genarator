@@ -6,7 +6,8 @@ import { InterfacesForm, BridgeForm, IPForm, FirewallForm, QueuesForm, PPPoEForm
 
 function MainContent() {
   const { 
-    state, 
+    state,
+    activeTab, 
     activeSubTab, 
     setMobileSidebarOpen, 
     mobileActiveView, 
@@ -68,14 +69,21 @@ function MainContent() {
 
   return (
     <main className="flex-1 flex flex-col min-w-0 bg-app-bg h-full overflow-hidden">
-      <header className="h-14 border-b border-border flex items-center justify-between px-4 sm:px-8 bg-app-bg shrink-0">
-        <datalist id="interface-list">
+      <datalist id="interface-list">
         {Array.from({length: 8}).map((_, i) => <option key={`eth${i}`} value={`ether${i + 1}`} />)}
         <option value="sfp-sfpplus1" />
         {state.bridges.map(b => <option key={b.id} value={b.name} />)}
         {state.vlans.map(v => <option key={v.id} value={v.name} />)}
         {state.eoipTunnels.map(t => <option key={t.id} value={t.name} />)}
       </datalist>
+      <header className="h-14 border-b border-border flex items-center justify-between px-4 sm:px-8 bg-app-bg shrink-0">
+        <div className="flex items-center gap-3">
+          {/* Hamburger button on mobile */}
+          <button 
+            onClick={() => setMobileSidebarOpen(true)}
+            className="lg:hidden p-1.5 text-text-muted hover:text-text-main hover:bg-border rounded-md transition-colors"
+            title="Open Sidebar"
+          >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
